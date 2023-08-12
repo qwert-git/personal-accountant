@@ -1,0 +1,35 @@
+@page
+@model Presenter.Web.Pages.IndexModel
+
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "Shared/_Layout";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>@ViewData["Title"]</title>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <h1 class="text-center my-5">Welcome to Accountant Application</h1>
+            <form method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="fileUpload">Upload File</label>
+                    @* <input type="file" class="form-control-file" id="fileUpload" name="fileUpload"> *@
+                    <input type="file" class="form-control-file" asp-for="Upload">
+                </div>
+                <input type="submit"/>
+                @* <a class="btn btn-primary" asp-page="Report">Proceed</a> *@
+            </form>
+        </div>
+    </div>
+</div>
+<div>
+</div>
+</body>
+</html>

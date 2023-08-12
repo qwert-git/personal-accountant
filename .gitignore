@@ -1,0 +1,16 @@
+.DS_Store
+*/bin/*
+*/obj/*
+*/.vs/*
+*/.vscode/*
+*/.idea/*
+.idea/
+*/.vscode/*
+*/.git/*
+*/.gitattri
+*/appsettings.json
+*/appsettings.*.json
+Presenter.Web/wwwroot/lib/
+Presenter.Web/uploads
+launchSettings.json
+*.DotSettings.user

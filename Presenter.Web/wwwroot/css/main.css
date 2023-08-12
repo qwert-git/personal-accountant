@@ -1,0 +1,44 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    padding: 10px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.category {
+    background-color: #e0e0e0;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.category-title {
+    cursor: pointer;
+}
+
+.transaction-list {
+    
+}
+
+.hidden {
+    display: none;
+}
+
+.grand-total {
+    text-align: right;
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-top: 20px;
+}
+
+.category-total{
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: rgba(54, 54, 54, 0.86);
+}

@@ -1,0 +1,68 @@
+@page
+@model Presenter.Web.Pages.Report
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Monthly Spends</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body>
+    <header>
+        <h1>Report Details</h1>
+        <h2>@Model.ReportData.Name</h2>
+        <h3>@Model.ReportData.Period</h3>
+    </header>
+<main>
+    @foreach(var category in Model.ReportData.Categories)
+    {
+        <div class="category">
+            <h2 class="category-title">@category.Name <span class="toggle">[+]</span></h2>
+            <ul class="transaction-list hidden">
+                @foreach(var transaction in category.Statements)
+                {
+                    <li><b>@transaction.Date</b> @transaction.Purpose - <b>@transaction.Amount.ToString("N1") @transaction.Currency.Prefix</b></li>
+                }
+            </ul>
+            <div class="category-total">Category total: @category.Total.ToString("N1") @Model.BaseCurrency</div>
+        </div>
+    }
+    
+    <div class="grand-total">
+        <h2>Grand Total: @Model.ReportData.Categories.Sum(c => c.Total).ToString("N1") @Model.BaseCurrency</h2>
+    </div>
+</main>
+
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        // Get all category title elements
+        const categoryTitles = document.querySelectorAll('.category-title');
+
+        // Add click event listener to each category title
+        categoryTitles.forEach(title => {
+            title.addEventListener('click', (event) => {
+                // Get the transaction list for this category
+                const transactionList = event.target.nextElementSibling;
+
+                // Toggle visibility of the transaction list
+                transactionList.classList.toggle('hidden');
+
+                // Get the toggle element for this category
+                const toggle = event.target.querySelector('.toggle');
+
+                // Toggle the text of the toggle element
+                if (toggle.textContent === '[+]') {
+                    toggle.textContent = '[-]';
+                } else {
+                    toggle.textContent = '[+]';
+                }
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
