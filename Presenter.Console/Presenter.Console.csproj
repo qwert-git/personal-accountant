@@ -33,9 +33,6 @@
       <None Update="23-jun.xls">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
-      <None Update="bog.xlsx">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
       <None Update="23-jun.xlsx">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>

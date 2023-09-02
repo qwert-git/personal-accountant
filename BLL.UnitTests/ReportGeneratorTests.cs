@@ -3,6 +3,7 @@ using BLL.Filters;
 using BLL.MerchantExtractors;
 using BLL.StatementProcessing;
 using BLL.StatementReaders;
+using BLL.UnitTests.Builders;
 using BLL.UnitTests.Fakers;
 using FluentAssertions;
 using Microsoft.Extensions.Logging;
@@ -22,10 +23,11 @@ public class ReportGeneratorTests
             .Setup(r => r.ReadAsync())
             .ReturnsAsync(GetDefaultTestStatement());
 
-        var categoryMapper = new CategoryMapper(new CategoryMapperConfig
+        var categoryMapRepository = CategoryMapRepositoryBuilder.WithConfig(new CategoryMapperConfig
         {
             { "Restaurants", new [] { "PIATTO", "McDonalnd" }}
         });
+        var categoryMapper = new CategoryMapper(categoryMapRepository);
 
         var filters = Enumerable.Empty<ITransactionsFilter>().ToList();
         var currencyConfig = new CurrencyProviderConfig

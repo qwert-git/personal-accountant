@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -25,7 +24,7 @@ public class IndexModel : PageModel
             return BadRequest();
         }
 
-        var file = Path.Combine(_environment.ContentRootPath, "uploads", Upload.FileName);
+        var file = Path.Combine(_environment.ContentRootPath, Upload.FileName);
         await using (var fileStream = new FileStream(file, FileMode.Create))
         {
             await Upload.CopyToAsync(fileStream);

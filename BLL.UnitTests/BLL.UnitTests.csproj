@@ -25,26 +25,15 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Samples\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\BLL\BLL.csproj" />
     </ItemGroup>
 
     <ItemGroup>
       <None Remove="Samples\bog.pdf" />
-      <Content Include="Samples\bog.pdf">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </Content>
       <None Remove="Samples\bog.xls" />
-      <Content Include="Samples\bog.xls">
+      <None Update="Samples\bog.xlsx">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </Content>
-      <None Remove="Samples\bog.xlsx" />
-      <Content Include="Samples\bog.xlsx">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </Content>
+      </None>
     </ItemGroup>
 
 </Project>

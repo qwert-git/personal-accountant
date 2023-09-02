@@ -5,6 +5,7 @@ using BLL.Filters;
 using BLL.MerchantExtractors;
 using BLL.StatementProcessing;
 using BLL.StatementReaders;
+using Infrastructure.DI;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
@@ -29,6 +30,7 @@ builder.Services.AddSingleton<IReadOnlyCollection<IMerchantExtractor>>(new IMerc
     new BogMerchantExtractor(),
     new CustomMerchantExtractor(appConfig.CustomMerchantMapping)
 });
+builder.Services.AddCategoryMapRepository(appConfig);
 builder.Services.AddSingleton<ICategoryMapper, CategoryMapper>();
 builder.Services.AddSingleton<IStatementsReader, BogStatementReader>();
 builder.Services.AddSingleton<ReportGenerator>(serviceProvider => new ReportGenerator(

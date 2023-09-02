@@ -1,5 +1,6 @@
 using BLL.Config;
 using BLL.StatementProcessing;
+using BLL.UnitTests.Builders;
 using FluentAssertions;
 
 namespace BLL.UnitTests;
@@ -20,20 +21,20 @@ public class CategoryMapperTests
                 }
             }
         };
-        
-        var mapper = new CategoryMapper(categoryMapperConfig);
+
+        var categoryMapRepository = CategoryMapRepositoryBuilder.WithConfig(categoryMapperConfig);
+        var mapper = new CategoryMapper(categoryMapRepository);
         
         var result = mapper.GetCategory("PIATTO, Batumi, abashidze/vaja-fshavela 52/18");
         
         result.Should().Be("Restaurants");
     }
-    
+
     [Fact]
     public void CategoryNotFound()
     {
-        var emptyConfig = new CategoryMapperConfig();
-        
-        var mapper = new CategoryMapper(emptyConfig);
+        var categoryMapRepository = CategoryMapRepositoryBuilder.WithEmptyConfig();
+        var mapper = new CategoryMapper(categoryMapRepository);
         
         var result = mapper.GetCategory("PIATTO, Batumi, abashidze/vaja-fshavela 52/18");
         
@@ -45,9 +46,8 @@ public class CategoryMapperTests
     [InlineData(null)]
     public void EmptyOrNullMerchant(string merchant)
     {
-        var emptyConfig = new CategoryMapperConfig();
-        
-        var mapper = new CategoryMapper(emptyConfig);
+        var categoryMapRepository = CategoryMapRepositoryBuilder.WithEmptyConfig();
+        var mapper = new CategoryMapper(categoryMapRepository);
         
         var result = mapper.GetCategory(merchant);
         

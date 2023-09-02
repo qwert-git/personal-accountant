@@ -1,17 +1,15 @@
-using BLL.Config;
+using BLL.CategoryMapRepository;
 
 namespace BLL.StatementProcessing;
 
 public class CategoryMapper : ICategoryMapper
 {
     private const string NotFoundCategory = "Not found";
-    private readonly List<CategoryMap> _mappings;
+    private readonly IReadOnlyCollection<CategoryMap> _mappings;
 
-    public CategoryMapper(CategoryMapperConfig categoryMapperConfig)
+    public CategoryMapper(ICategoryMapRepository categoryMapRepository)
     {
-        _mappings = categoryMapperConfig
-            .SelectMany(pair => pair.Value.Select(value => new CategoryMap(value, pair.Key)))
-            .ToList();
+        _mappings = categoryMapRepository.GetAll();
     }
 
     public string GetCategory(string? merchant)
@@ -20,7 +18,7 @@ public class CategoryMapper : ICategoryMapper
             return NotFoundCategory;
 
         var res = _mappings
-            .FirstOrDefault(map => IsMerchantInCategory(merchant, map.CategoryMarker));
+            .FirstOrDefault(map => IsMerchantInCategory(merchant, map.MerchantMarker));
         return res?.CategoryName ?? NotFoundCategory;
     }
 
@@ -28,6 +26,4 @@ public class CategoryMapper : ICategoryMapper
     {
         return merchant.Contains(categoryMark, StringComparison.OrdinalIgnoreCase);
     }
-    
-    private record CategoryMap(string CategoryMarker, string CategoryName);
 }
