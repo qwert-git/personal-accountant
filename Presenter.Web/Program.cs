@@ -35,7 +35,8 @@ builder.Services.AddSingleton<ReportGenerator>(serviceProvider => new ReportGene
     new ITransactionsFilter[]
     {
         new PurposeStopWordFilter("Automatic conversion"),
-        new PurposeStopWordFilter("Incoming Transfer")
+        new PurposeStopWordFilter("Incoming Transfer"),
+        new NegativeAmountFilter()
     },
     serviceProvider.GetRequiredService<ILogger<ReportGenerator>>()
 ));

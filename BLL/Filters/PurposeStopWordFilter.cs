@@ -16,3 +16,11 @@ public class PurposeStopWordFilter : ITransactionsFilter
         return !transactions.Purpose.Contains(_stopWord);
     }
 }
+
+public class NegativeAmountFilter : ITransactionsFilter
+{
+    public bool IsAllowed(Transaction transactions)
+    {
+        return transactions.Amount < 0;
+    }
+}
