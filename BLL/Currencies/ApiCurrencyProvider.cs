@@ -57,11 +57,13 @@ public class ApiCurrencyProvider : ICurrencyProvider
 
     private static string GetCurrencyPrefix(string currencyName)
     {
+        // TODO: I have to move it to the config
         return currencyName switch
         {
             "USD" => "$",
             "GEL" => "₾",
             "EUR" => "€",
+            "UAH" => "₴",
             _ => throw new ArgumentException($"Currency {currencyName} is not supported")
         };
     }

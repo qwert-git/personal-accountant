@@ -20,7 +20,7 @@
             <h1 class="text-center my-5">Welcome to Accountant Application</h1>
             <p>Time: @DateTime.Now.ToString(CultureInfo.InvariantCulture)</p>
             <p>Current Environment: @Model.Environment</p>
-            <p>Currencies Rate: @Model.Currencies.Select(c => $"{c.Name} {c.RateToBaseCurrency}").Aggregate((c1,c2) => $"{c1}, {c2}")</p>
+            <p>Currencies Rate: @Model.Currencies.Select(c => $"{c.Name} {c.RateToBaseCurrency:N4}").Aggregate((c1, c2) => $"{c1}, {c2}")</p>
         </div>
     </div>
 </div>
