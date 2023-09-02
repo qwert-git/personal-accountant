@@ -33,6 +33,16 @@ public class ApiCurrencyProvider : ICurrencyProvider
         return Task.FromResult(new Currency(currencyName, currencyToEur, GetCurrencyPrefix(currencyName)));
     }
 
+    public async Task<IReadOnlyCollection<Currency>> GetAllAsync()
+    {
+        LoadTheCache();
+
+        return await Task.WhenAll(
+            _ratesCache!
+                .Select(c => GetAsync(c.Key))
+            );
+    }
+
     private void LoadTheCache()
     {
         if (_ratesCache is not null) return;

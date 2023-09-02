@@ -1,0 +1,30 @@
+@page
+@using System.Globalization
+@model Presenter.Web.Pages.Admin
+
+@{
+    ViewData["Title"] = "Admin Page";
+    Layout = "Shared/_Layout";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>@ViewData["Title"]</title>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <h1 class="text-center my-5">Welcome to Accountant Application</h1>
+            <p>Time: @DateTime.Now.ToString(CultureInfo.InvariantCulture)</p>
+            <p>Current Environment: @Model.Environment</p>
+            <p>Currencies Rate: @Model.Currencies.Select(c => $"{c.Name} {c.RateToBaseCurrency}").Aggregate((c1,c2) => $"{c1}, {c2}")</p>
+        </div>
+    </div>
+</div>
+<div>
+</div>
+</body>
+</html>

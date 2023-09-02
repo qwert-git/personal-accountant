@@ -10,15 +10,20 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 
 // Add Configuration
-// TODO: Last time CustomMerchantMapping doesn't load
 var appConfig = builder.Configuration.GetSection("AppConfig").Get<AppConfig>() ?? throw new ApplicationException("AppConfig is not configured");
 builder.Services.AddSingleton(appConfig.CategoryMapping ?? throw new ApplicationException("CategoryMapping is not configured"));
 builder.Services.AddSingleton(appConfig.CurrencyProvider ?? throw new ArgumentException("CurrencyProvider is not configured"));
 
-// var pathToFile = builder.Configuration.GetSection("StatementsPath").Get<string>() ?? throw new ArgumentException("StatementsPath is not configured");
-
 // Add services to the container.
-builder.Services.AddSingleton<ICurrencyProvider, ApiCurrencyProvider>();
+if (builder.Environment.IsDevelopment())
+{
+    builder.Services.AddSingleton<ICurrencyProvider, StaticCurrencyProvider>();
+}
+else
+{
+    builder.Services.AddSingleton<ICurrencyProvider, ApiCurrencyProvider>();
+}
+
 builder.Services.AddSingleton<IReadOnlyCollection<IMerchantExtractor>>(new IMerchantExtractor[]
 {
     new BogMerchantExtractor(),

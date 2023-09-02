@@ -14,4 +14,9 @@ public class StaticCurrencyProvider : ICurrencyProvider
     {
         return Task.FromResult(_currencies[currencyName]);
     }
+
+    public Task<IReadOnlyCollection<Currency>> GetAllAsync()
+    {
+        return Task.FromResult<IReadOnlyCollection<Currency>>(_currencies.Values.ToList());
+    }
 }

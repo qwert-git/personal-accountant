@@ -11,19 +11,10 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Update="23-jun(1).xlsx">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
-    </ItemGroup>
-
-    <ItemGroup>
       <Content Update="appsettings.json">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="uploads\" />
-    </ItemGroup>
 
 </Project>

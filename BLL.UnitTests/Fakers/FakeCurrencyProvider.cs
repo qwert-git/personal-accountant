@@ -20,4 +20,9 @@ internal class FakeCurrencyProvider : ICurrencyProvider
         
         return Task.FromResult(res);
     }
+
+    public Task<IReadOnlyCollection<Currency>> GetAllAsync()
+    {
+        throw new NotImplementedException();
+    }
 }

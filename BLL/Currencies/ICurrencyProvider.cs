@@ -1,4 +1,3 @@
-using Models;
 using Models.Common;
 
 namespace BLL.Currencies;
@@ -6,4 +5,6 @@ namespace BLL.Currencies;
 public interface ICurrencyProvider
 {
     Task<Currency> GetAsync(string currencyName);
+    
+    Task<IReadOnlyCollection<Currency>> GetAllAsync();
 }
